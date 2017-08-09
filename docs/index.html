@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+    body {
+      margin: 20px;
+    }
+    #main {
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="main">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-header">
+          <h1>ToDo App Sample</h1>
+        </div>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Input something..." v-model="text">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" @click="sendTask">Add New Task</button>
+          </span>
+        </div><!-- /input-group -->
+      </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-header">
+          <h2>Task List</h2>
+        </div>
+        <div v-if="tasks.length > 0">
+          <ul class="list-group">
+            <task-field v-for="(task, index) in tasks"
+              :id="index" :parent-task="task"
+              @get-index="deleteTask"
+              @update-task="updateTask"></task-field>
+          </ul>
+        </div>
+        <div v-else>
+          <p>Task is nothing...</p>
+        </div>
+      </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.6/vue.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
